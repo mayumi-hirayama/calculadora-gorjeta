@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Calculadora de Gorjeta</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box; /*corrige o problema de largura do input*/
+        }
+
+        button {
+            margin-top: 20px;
+            width: 50%;
+            padding: 10px;
+            background-color: #5395e0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto; /*para centralizar o botão*/
+        }
+
+        button:hover {
+            background-color: #163d6e;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Gorjeta</h1>
+    
+    <label for='conta'>Valor da Conta: R$</label>
+    <input type='number' id="conta" placeholder="Ex:150.00">
+
+    <label for="gorjeta">Porcentagem da Gorjeta: </label>
+    <select id="gorjeta">
+        <option value="10">10%</option>
+        <option value="15">15%</option>
+        <option value="20">20%</option>
+    </select>
+
+    <button onclick="CalcularGorjeta()">Calcular</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function CalcularGorjeta() {
+            const conta = parseFloat(document.getElementById('conta').value);
+            const porcentagem = parseFloat(document.getElementById('gorjeta').value);
+
+            if (isNaN(conta) || isNaN(porcentagem)) {
+                document.getElementById('resultado').innerText = 'Preencha os campos!';
+                return;
+            }
+
+            const gorjeta = conta * (porcentagem / 100);
+            const total = conta + gorjeta;
+
+            document.getElementById('resultado').innerText = 
+            `Gorjeta: R$ ${gorjeta.toFixed(2)} | Total: R$ ${total.toFixed(2)}`;
+        }
+    </script>
+    
+</body>
+</html>
